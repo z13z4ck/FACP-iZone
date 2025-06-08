@@ -132,13 +132,17 @@ The iZone system consists of:
 
 ## 8. Hardware Specifications
 
-### 8.1 Zone Card Hardware
-- **Microcontroller:** RP2040-Zero
-- **Sensors:** Configurable fire detection sensors
-- **Indicators:** Status LEDs (Power, Normal, Alarm, Fault)
-- **Communication:** Master-slave protocol interface
-- **Power:** 12V DC input with local regulation
-- **Enclosure:** Fire-rated housing suitable for zone installation
+### 8.1 Zone Card Hardware (**IMPLEMENTED**)
+- **Microcontroller:** RP2040 (implemented and verified)
+- **Power Input:** 24V DC input (exceeds 12V specification)
+- **Power Regulation:** LT8640S-3V3 (24V to 3.3V, 2A capability)
+- **Sensor Interface:** TCMT4600 optocouplers for isolated sensor inputs
+- **Multi-Zone Support:** Minimum 4 fire zones with optical isolation
+- **Indicators:** Multiple status LEDs with proper current limiting
+- **Communication:** I2C interface with additional communication lines
+- **Protection:** Optical isolation for enhanced safety and noise immunity
+- **Programming:** SWD interface for development and debugging
+- **Status:** **HARDWARE COMPLETE - READY FOR FIRMWARE**
 
 ### 8.2 Building Controller Hardware
 - **Microcontroller:** RP2040-Zero (enhanced variant or additional processing)
@@ -202,39 +206,60 @@ The iZone system consists of:
 - **GSM Task:** (Building Controller only) Manage GSM communications
 - **USB Task:** (Building Controller only) Handle GUI configuration tool communication
 
-## 10. Development Phases
+## 10. Development Phases (**UPDATED BASED ON COMPLETED HARDWARE**)
 
-### Phase 1: Foundation (Weeks 1-4)
-- [ ] Hardware prototype development
-- [ ] Basic FreeRTOS setup on RP2040-Zero
-- [ ] Core sensor monitoring functionality
-- [ ] Initial LED control implementation
+### ✅ Phase 1: Hardware Foundation (COMPLETED)
+- [x] Hardware design and PCB development
+- [x] Power regulation (24V to 3.3V) with LT8640S-3V3
+- [x] RP2040 microcontroller integration
+- [x] Sensor interface with TCMT4600 optocouplers
+- [x] LED status indicators with current limiting
+- [x] I2C communication interface
+- [x] SWD programming interface
 
-### Phase 2: Communication (Weeks 5-8)
-- [ ] Master-slave protocol design and implementation
-- [ ] Multi-zone communication testing
-- [ ] Basic alarm coordination between zones
+### 🔄 Phase 2: Firmware Foundation (CURRENT PHASE - Weeks 1-4)
+- [ ] RP2040 SDK setup and build environment
+- [ ] Basic FreeRTOS setup on RP2040
+- [ ] Hardware abstraction layer (HAL) development
+- [ ] GPIO and peripheral driver implementation
+- [ ] Initial LED control and status indication
+- [ ] Power management and low-power modes
+
+### Phase 3: Sensor and Communication (Weeks 5-8)
+- [ ] TCMT4600 optocoupler interface drivers
+- [ ] Multi-zone sensor monitoring implementation
+- [ ] Fire detection algorithms and thresholds
+- [ ] I2C slave protocol implementation
+- [ ] Master-slave communication framework
 - [ ] Error handling and recovery mechanisms
 
-### Phase 3: GSM Integration (Weeks 9-12)
-- [ ] SIM9000A module integration
+### Phase 4: System Integration (Weeks 9-12)
+- [ ] Multi-zone alarm coordination
+- [ ] System diagnostics and self-test
+- [ ] Communication protocol testing
+- [ ] Performance optimization
+- [ ] Real-time response validation (<100ms requirement)
+
+### Phase 5: Advanced Features & GSM (Weeks 13-16)
+- [ ] SIM9000A module integration (if building controller)
 - [ ] GSM communication protocols
 - [ ] Remote notification system
-- [ ] Network connectivity management
-
-### Phase 4: Configuration Tools & Integration (Weeks 13-16)
 - [ ] USB communication protocol implementation
 - [ ] GUI configuration tool development
-- [ ] Full system testing
-- [ ] Performance optimization
-- [ ] Safety and reliability testing
-- [ ] Documentation and user manuals
 
-### Phase 5: Certification & Deployment (Weeks 17-20)
-- [ ] Compliance testing
+### Phase 6: Testing & Validation (Weeks 17-20)
+- [ ] Hardware validation against schematic
+- [ ] Comprehensive system testing
+- [ ] EMC compliance testing
+- [ ] Environmental testing (-10°C to +60°C)
+- [ ] Safety and reliability testing
 - [ ] Field testing and validation
+
+### Phase 7: Deployment (Weeks 21-24)
 - [ ] Manufacturing preparation
-- [ ] Deployment procedures
+- [ ] Documentation and user manuals
+- [ ] Compliance certification
+- [ ] Deployment procedures and training
 
 ## 11. Success Metrics
 
