@@ -1,0 +1,9 @@
+C:/dev/GitHub/FACP-iZone/firmware/src/smp_config.c:210:6:vSMPTestTask	32	static
+C:/dev/GitHub/FACP-iZone/firmware/src/smp_config.c:22:12:xTaskCreateWithAffinity	24	static
+C:/dev/GitHub/FACP-iZone/firmware/src/smp_config.c:59:12:xCreateSensorTask	24	static
+C:/dev/GitHub/FACP-iZone/firmware/src/smp_config.c:80:12:xCreateCommunicationTask	24	static
+C:/dev/GitHub/FACP-iZone/firmware/src/smp_config.c:101:12:xCreateAlarmTask	24	static
+C:/dev/GitHub/FACP-iZone/firmware/src/smp_config.c:122:10:ulGetCurrentCore	0	static
+C:/dev/GitHub/FACP-iZone/firmware/src/smp_config.c:130:6:vPrintSMPStatus	8	static
+C:/dev/GitHub/FACP-iZone/firmware/src/smp_config.c:153:12:xValidateSMPConfiguration	8	static
+C:/dev/GitHub/FACP-iZone/firmware/src/smp_config.c:236:12:xCreateSMPTestTasks	32	static

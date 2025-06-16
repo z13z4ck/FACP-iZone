@@ -1,0 +1,3 @@
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c:14:42:_retrieve_unique_id_on_boot	8	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c:26:6:pico_get_unique_board_id	8	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c:30:6:pico_get_unique_board_id_string	20	static

@@ -26,15 +26,19 @@
 #define configUSE_16_BIT_TICKS                  0
 
 /* SMP Configuration for RP2040 dual-core */
-#define configNUM_CORES                         2
+#define configNUMBER_OF_CORES                   2
 #define configUSE_CORE_AFFINITY                 1
 #define configUSE_PASSIVE_IDLE_HOOK             0
 
 /* Memory allocation related definitions. */
 #define configSUPPORT_STATIC_ALLOCATION         1
 #define configSUPPORT_DYNAMIC_ALLOCATION        1
-#define configTOTAL_HEAP_SIZE                   (128*1024)
+#define configTOTAL_HEAP_SIZE                   (96*1024)  /* Optimized for RP2040-Zero */
 #define configAPPLICATION_ALLOCATED_HEAP        0
+#define configSTACK_ALLOCATION_FROM_SEPARATE_HEAP 0
+
+/* Memory optimization for fire safety critical operations */
+#define configUSE_HEAP_SCHEME                   4  /* Use heap_4 for better fragmentation handling */
 
 /* Hook function related definitions. */
 #define configCHECK_FOR_STACK_OVERFLOW          2
@@ -57,14 +61,19 @@
 #define configTIMER_TASK_STACK_DEPTH            1024
 
 /* Interrupt nesting behaviour configuration. */
-#define configKERNEL_INTERRUPT_PRIORITY         [configLIBRARY_LOWEST_INTERRUPT_PRIORITY << (8 - configPRIO_BITS)]
-#define configMAX_SYSCALL_INTERRUPT_PRIORITY    [configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY << (8 - configPRIO_BITS)]
+/* These are defined by the Pico SDK port */
+#define configKERNEL_INTERRUPT_PRIORITY         255
+#define configMAX_SYSCALL_INTERRUPT_PRIORITY    192
 
-/* SMP port only */
-#define configTICK_CORE                         0
+/* SMP Configuration Options - Handled by RP2040 SMP Port */
+
+/* Core Affinity Definitions for Fire Safety Tasks */
+#define CORE_AFFINITY_SENSORS                   (1 << 0)  /* Core 0 for critical sensor tasks */
+#define CORE_AFFINITY_COMMUNICATION             (1 << 1)  /* Core 1 for I2C/GSM communication */
+#define CORE_AFFINITY_ANY                       ((1 << configNUMBER_OF_CORES) - 1)  /* Any core */
 
 /* Define to trap errors during development. */
-#define configASSERT(x)                         if((x) == 0) {taskDISABLE_INTERRUPTS(); for(;;);}
+#define configASSERT(x)                         if((x) == 0) {portDISABLE_INTERRUPTS(); for(;;);}
 
 /* FreeRTOS MPU specific definitions. */
 #define configINCLUDE_APPLICATION_DEFINED_PRIVILEGED_FUNCTIONS 0
@@ -98,13 +107,21 @@
 #define TASK_PRIORITY_STATUS_LED                (configMAX_PRIORITIES - 8)  /* Medium */
 #define TASK_PRIORITY_DIAGNOSTICS               (configMAX_PRIORITIES - 10) /* Low */
 
-/* Task Stack Sizes (in words) */
-#define TASK_STACK_SIZE_SENSOR_MONITOR          512
-#define TASK_STACK_SIZE_ALARM_CONTROL           256
-#define TASK_STACK_SIZE_COMMUNICATION           384
-#define TASK_STACK_SIZE_STATUS_LED              256
-#define TASK_STACK_SIZE_DIAGNOSTICS             512
-#define TASK_STACK_SIZE_WATCHDOG                256
+/* Task Stack Sizes (in words) - Optimized for SMP operation */
+#define TASK_STACK_SIZE_SENSOR_MONITOR          512  /* Core 0 - Critical sensor processing */
+#define TASK_STACK_SIZE_ALARM_CONTROL           256  /* Core 0 - Time-critical alarm logic */
+#define TASK_STACK_SIZE_COMMUNICATION           384  /* Core 1 - I2C/GSM communication */
+#define TASK_STACK_SIZE_STATUS_LED              256  /* Core 1 - Non-critical UI operations */
+#define TASK_STACK_SIZE_DIAGNOSTICS             512  /* Core 1 - System diagnostics */
+#define TASK_STACK_SIZE_WATCHDOG                256  /* Core 0 - Critical safety monitor */
+
+/* Core Affinity Task Assignments */
+#define TASK_CORE_AFFINITY_SENSOR_MONITOR       CORE_AFFINITY_SENSORS
+#define TASK_CORE_AFFINITY_ALARM_CONTROL        CORE_AFFINITY_SENSORS
+#define TASK_CORE_AFFINITY_COMMUNICATION        CORE_AFFINITY_COMMUNICATION
+#define TASK_CORE_AFFINITY_STATUS_LED           CORE_AFFINITY_COMMUNICATION
+#define TASK_CORE_AFFINITY_DIAGNOSTICS          CORE_AFFINITY_COMMUNICATION
+#define TASK_CORE_AFFINITY_WATCHDOG             CORE_AFFINITY_SENSORS
 
 /* Queue Sizes */
 #define QUEUE_SIZE_SENSOR_DATA                  8

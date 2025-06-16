@@ -1,0 +1,10 @@
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/spi.c:36:6:spi_deinit	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/spi.c:42:6:spi_set_baudrate	48	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/spi.c:21:6:spi_init	16	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/spi.c:76:6:spi_get_baudrate	16	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/spi.c:84:5:spi_write_read_blocking	32	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/spi.c:107:5:spi_write_blocking	12	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/spi.c:136:5:spi_read_blocking	28	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/spi.c:156:5:spi_write16_read16_blocking	32	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/spi.c:178:5:spi_write16_blocking	12	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/spi.c:203:5:spi_read16_blocking	28	static

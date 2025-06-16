@@ -1,0 +1,9 @@
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c:156:6:stdio_usb_set_chars_available_callback	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c:85:13:usb_irq	8	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c:123:5:stdio_usb_in_chars	16	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c:91:13:stdio_usb_out_chars	32	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c:43:16:timer_task	16	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c:57:13:low_priority_worker_irq	24	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c:150:6:tud_cdc_rx_cb	8	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c:174:6:stdio_usb_init	24	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c:235:6:stdio_usb_connected	8	static

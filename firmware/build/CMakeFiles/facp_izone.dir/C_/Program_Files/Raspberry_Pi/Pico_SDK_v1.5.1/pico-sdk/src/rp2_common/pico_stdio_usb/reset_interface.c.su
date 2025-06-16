@@ -1,0 +1,7 @@
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c:23:13:resetd_init	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c:26:13:resetd_reset	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c:30:17:resetd_open	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c:77:13:resetd_xfer_cb	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c:43:13:resetd_control_xfer_cb	16	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c:95:28:usbd_app_driver_get_cb	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c:103:6:tud_cdc_line_coding_cb	8	static

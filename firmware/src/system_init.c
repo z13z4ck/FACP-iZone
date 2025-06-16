@@ -153,8 +153,8 @@ void system_shutdown(void)
     /* Set system status to fault */
     system_set_status(SYSTEM_STATUS_FAULT);
     
-    /* Disable watchdog */
-    watchdog_disable();
+    /* Disable watchdog (RP2040 doesn't have watchdog_disable, just don't update it) */
+    /* watchdog_disable(); */ /* Not available on RP2040 */
     
     /* Turn off all LEDs except fault LED */
     gpio_put(25, 0);  /* Status LED off */
@@ -175,7 +175,7 @@ void vApplicationMallocFailedHook(void)
     system_set_status(SYSTEM_STATUS_FAULT);
     
     /* Disable interrupts and halt */
-    taskDISABLE_INTERRUPTS();
+    portDISABLE_INTERRUPTS();
     for (;;) {
         /* Infinite loop - watchdog will reset the system */
     }
@@ -196,7 +196,7 @@ void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
     system_set_status(SYSTEM_STATUS_FAULT);
     
     /* Disable interrupts and halt */
-    taskDISABLE_INTERRUPTS();
+    portDISABLE_INTERRUPTS();
     for (;;) {
         /* Infinite loop - watchdog will reset the system */
     }
@@ -230,4 +230,26 @@ void vApplicationGetTimerTaskMemory(StaticTask_t **ppxTimerTaskTCBBuffer,
     *ppxTimerTaskTCBBuffer = &xTimerTaskTCBBuffer;
     *ppxTimerTaskStackBuffer = &xTimerStack[0];
     *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
+}
+
+/**
+ * @brief Get passive idle task memory (static allocation for SMP)
+ * @param ppxIdleTaskTCBBuffer Pointer to TCB buffer  
+ * @param ppxIdleTaskStackBuffer Pointer to stack buffer
+ * @param puxIdleTaskStackSize Pointer to stack size
+ * @param xPassiveIdleTaskIndex Index of the passive idle task
+ */
+void vApplicationGetPassiveIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
+                                         StackType_t **ppxIdleTaskStackBuffer,
+                                         configSTACK_DEPTH_TYPE *puxIdleTaskStackSize,
+                                         BaseType_t xPassiveIdleTaskIndex)
+{
+    /* Static memory for the Passive Idle Tasks (SMP requirement) */
+    static StaticTask_t xPassiveIdleTaskTCB[configNUMBER_OF_CORES - 1];
+    static StackType_t xPassiveIdleStack[configNUMBER_OF_CORES - 1][configMINIMAL_STACK_SIZE];
+    
+    /* Use the index to provide different memory for each passive idle task */
+    *ppxIdleTaskTCBBuffer = &xPassiveIdleTaskTCB[xPassiveIdleTaskIndex];
+    *ppxIdleTaskStackBuffer = &xPassiveIdleStack[xPassiveIdleTaskIndex][0];
+    *puxIdleTaskStackSize = configMINIMAL_STACK_SIZE;
 } 

@@ -1,0 +1,11 @@
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:48:6:clock_configure.part.0	48	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:269:13:clocks_irq_handler	16	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:41:6:clock_stop	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:48:6:clock_configure	16	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:121:6:clocks_init	24	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:201:10:clock_get_hz	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:206:6:clock_set_reported_hz	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:211:10:frequency_count_khz	16	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:286:6:clocks_enable_resus	8	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:310:6:clock_gpio_init_int_frac	16	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_clocks/clocks.c:357:6:clock_configure_gpin	32	static

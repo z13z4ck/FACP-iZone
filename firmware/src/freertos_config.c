@@ -9,10 +9,12 @@
  * @date 2024
  */
 
+#include <stdio.h>
 #include "FreeRTOS.h"
 #include "task.h"
 #include "pico/stdlib.h"
 #include "hardware/clocks.h"
+#include "freertos_prototypes.h"
 
 /**
  * @brief FreeRTOS port-specific configuration
@@ -54,7 +56,7 @@ void vAssertCalled(const char *file, int line)
     printf("ASSERTION FAILED: %s:%d\n", file, line);
     
     /* Disable interrupts */
-    taskDISABLE_INTERRUPTS();
+    portDISABLE_INTERRUPTS();
     
     /* Halt system */
     for (;;) {

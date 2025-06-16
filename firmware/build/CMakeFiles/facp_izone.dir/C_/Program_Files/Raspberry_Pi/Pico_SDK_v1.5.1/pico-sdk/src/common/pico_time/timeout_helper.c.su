@@ -1,0 +1,4 @@
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/common/pico_time/timeout_helper.c:9:13:check_single_timeout_us	8	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/common/pico_time/timeout_helper.c:18:13:check_per_iteration_timeout_us	16	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/common/pico_time/timeout_helper.c:13:18:init_single_timeout_until	0	static
+C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/common/pico_time/timeout_helper.c:26:18:init_per_iteration_timeout_us	16	static

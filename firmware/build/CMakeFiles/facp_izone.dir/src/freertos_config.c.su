@@ -1,0 +1,7 @@
+C:/dev/GitHub/FACP-iZone/firmware/src/freertos_config.c:25:6:vPortConfigureTimerForRunTimeStats	0	static
+C:/dev/GitHub/FACP-iZone/firmware/src/freertos_config.c:37:10:ulGetRunTimeCounterValue	0	static
+C:/dev/GitHub/FACP-iZone/firmware/src/freertos_config.c:54:6:vAssertCalled	8	static
+C:/dev/GitHub/FACP-iZone/firmware/src/freertos_config.c:76:6:vApplicationSleep	0	static
+C:/dev/GitHub/FACP-iZone/firmware/src/freertos_config.c:92:6:vPortSetupTimerInterrupt	0	static
+C:/dev/GitHub/FACP-iZone/firmware/src/freertos_config.c:106:6:vApplicationCoreIdleHook	0	static
+C:/dev/GitHub/FACP-iZone/firmware/src/freertos_config.c:122:6:vApplicationTickHook	0	static

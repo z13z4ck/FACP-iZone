@@ -24,6 +24,7 @@
 
 /* Project includes */
 #include "system_init.h"
+#include "smp_config.h"
 
 /* Pin definitions based on RP2040-Zero and custom hardware */
 #define LED_STATUS_PIN      25      /* Built-in LED on RP2040-Zero */
@@ -162,14 +163,15 @@ int main(void)
     printf("Hardware: RP2040-Zero with FreeRTOS SMP\n");
     printf("===========================================\n\n");
     
-    /* Create the LED blink task */
-    xReturned = xTaskCreate(
+    /* Create the LED blink task with core affinity (Communication core) */
+    xReturned = xTaskCreateWithAffinity(
         prvLedBlinkTask,                    /* Task function */
         "LED_Blink",                        /* Task name */
         TASK_STACK_SIZE_STATUS_LED,         /* Stack size */
         NULL,                               /* Parameters */
         TASK_PRIORITY_STATUS_LED,           /* Priority */
-        &xLedBlinkTaskHandle                /* Task handle */
+        &xLedBlinkTaskHandle,               /* Task handle */
+        TASK_CORE_AFFINITY_STATUS_LED       /* Core affinity */
     );
     
     if (xReturned != pdPASS) {
@@ -177,19 +179,35 @@ int main(void)
         return -1;
     }
     
-    /* Create the system monitor task */
-    xReturned = xTaskCreate(
+    /* Create the system monitor task with core affinity (Sensor core) */
+    xReturned = xTaskCreateWithAffinity(
         prvSystemMonitorTask,               /* Task function */
         "SysMonitor",                       /* Task name */
         TASK_STACK_SIZE_WATCHDOG,           /* Stack size */
         NULL,                               /* Parameters */
         TASK_PRIORITY_WATCHDOG,             /* Priority */
-        &xSystemMonitorTaskHandle           /* Task handle */
+        &xSystemMonitorTaskHandle,          /* Task handle */
+        TASK_CORE_AFFINITY_WATCHDOG         /* Core affinity */
     );
     
     if (xReturned != pdPASS) {
         printf("Failed to create System Monitor task\n");
         return -1;
+    }
+    
+    /* Initialize and validate SMP configuration */
+    printf("Initializing SMP configuration...\n");
+    vPrintSMPStatus();
+    
+    if (xValidateSMPConfiguration() != pdTRUE)
+    {
+        printf("WARNING: SMP configuration validation failed\n");
+    }
+    
+    /* Create SMP test tasks for demonstration */
+    if (xCreateSMPTestTasks() != pdTRUE)
+    {
+        printf("WARNING: Failed to create SMP test tasks\n");
     }
     
     printf("Starting FreeRTOS scheduler...\n");

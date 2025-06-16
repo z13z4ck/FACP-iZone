@@ -8,8 +8,8 @@ echo =======================================================
 
 REM Set default Pico SDK path for this installation
 if not defined PICO_SDK_PATH (
-    if exist "C:\Program Files\Raspberry Pi\Pico SDK v1.5.1" (
-        set "PICO_SDK_PATH=C:\Program Files\Raspberry Pi\Pico SDK v1.5.1"
+    if exist "C:\Program Files\Raspberry Pi\Pico SDK v1.5.1\pico-sdk" (
+        set "PICO_SDK_PATH=C:\Program Files\Raspberry Pi\Pico SDK v1.5.1\pico-sdk"
         echo Using official Pico SDK installation: %PICO_SDK_PATH%
     ) else (
         echo Warning: PICO_SDK_PATH not set and official installation not found
@@ -30,6 +30,17 @@ if not exist "%PICO_SDK_PATH%\pico_sdk_init.cmake" (
     exit /b 1
 )
 
+REM Set up ARM toolchain path if not already in PATH
+set "ARM_TOOLCHAIN_PATH=C:\Program Files\Raspberry Pi\Pico SDK v1.5.1\gcc-arm-none-eabi\bin"
+if exist "%ARM_TOOLCHAIN_PATH%\arm-none-eabi-gcc.exe" (
+    echo Found ARM toolchain at: %ARM_TOOLCHAIN_PATH%
+    set "PATH=%ARM_TOOLCHAIN_PATH%;%PATH%"
+    set "PICO_TOOLCHAIN_PATH=%ARM_TOOLCHAIN_PATH%"
+) else (
+    echo Warning: ARM toolchain not found at expected location
+    echo Please ensure arm-none-eabi-gcc is installed and in PATH
+)
+
 REM Set build type (Release or Debug)
 set BUILD_TYPE=Release
 if "%1"=="debug" set BUILD_TYPE=Debug
@@ -42,9 +53,22 @@ REM Create and enter build directory
 if not exist build mkdir build
 cd build
 
-REM Configure with CMake
+REM Set up additional build tools
+set "NINJA_PATH=C:\Program Files\Raspberry Pi\Pico SDK v1.5.1\ninja"
+if exist "%NINJA_PATH%\ninja.exe" (
+    set "PATH=%NINJA_PATH%;%PATH%"
+    echo Found Ninja build system
+)
+
+set "CMAKE_PATH=C:\Program Files\Raspberry Pi\Pico SDK v1.5.1\cmake\bin"
+if exist "%CMAKE_PATH%\cmake.exe" (
+    set "PATH=%CMAKE_PATH%;%PATH%"
+    echo Found CMake in Pico SDK
+)
+
+REM Configure with CMake using Ninja generator
 echo Configuring project with CMake...
-cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%BUILD_TYPE%
+cmake .. -G Ninja -DCMAKE_BUILD_TYPE=%BUILD_TYPE%
 if errorlevel 1 (
     echo.
     echo CMake configuration failed!
