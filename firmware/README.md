@@ -34,22 +34,33 @@ firmware/
 ### Prerequisites
 - CMake 3.13 or later
 - GCC ARM cross-compiler (`gcc-arm-none-eabi`)
-- Raspberry Pi Pico SDK
+- Raspberry Pi Pico SDK v1.5.1 or later
 - Git (for submodules)
+
+**Note**: The Pico SDK can be installed via:
+1. **Official Installer** (Recommended): Download from [Raspberry Pi Pico Setup for Windows](https://github.com/raspberrypi/pico-setup-windows)
+2. **Manual Installation**: Clone from GitHub and build manually
 
 ### Windows Setup
 ```bash
 # Install required tools (using scoop or similar)
 scoop install cmake gcc-arm-none-eabi git
 
-# Set environment variable for Pico SDK
-$env:PICO_SDK_PATH = "C:\path\to\pico-sdk"
+# Set environment variable for Pico SDK (adjust path as needed)
+$env:PICO_SDK_PATH = "C:\Program Files\Raspberry Pi\Pico SDK v1.5.1"
+
+# Or for permanent setting, add to your PowerShell profile:
+# [System.Environment]::SetEnvironmentVariable("PICO_SDK_PATH", "C:\Program Files\Raspberry Pi\Pico SDK v1.5.1", "User")
 ```
 
 ### Linux Setup
 ```bash
 sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
-export PICO_SDK_PATH=/path/to/pico-sdk
+
+# Set environment variable for Pico SDK (adjust path as needed)
+export PICO_SDK_PATH=/opt/pico-sdk
+# Or add to ~/.bashrc for permanent setting:
+# echo 'export PICO_SDK_PATH=/opt/pico-sdk' >> ~/.bashrc
 ```
 
 ## Building
@@ -164,9 +175,13 @@ The basic firmware includes:
 ## Troubleshooting
 
 ### Build Issues
-- Ensure `PICO_SDK_PATH` is set correctly
-- Verify FreeRTOS submodule is initialized
-- Check CMake version (3.13+ required)
+- **PICO_SDK_PATH not set**: Ensure environment variable points to correct SDK installation
+  - Windows: `$env:PICO_SDK_PATH = "C:\Program Files\Raspberry Pi\Pico SDK v1.5.1"`
+  - Linux: `export PICO_SDK_PATH=/opt/pico-sdk`
+  - Verify path exists: `ls "$PICO_SDK_PATH"` (Linux) or `Test-Path $env:PICO_SDK_PATH` (Windows)
+- **CMake can't find Pico SDK**: Check that `pico_sdk_import.cmake` exists in SDK directory
+- Verify FreeRTOS submodule is initialized: `git submodule status`
+- Check CMake version (3.13+ required): `cmake --version`
 
 ### Runtime Issues
 - Check USB connection for debug output
