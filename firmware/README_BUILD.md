@@ -28,7 +28,7 @@ chmod +x build.sh
 ### Manual Build (All Platforms)
 ```bash
 # Set up environment (if not auto-detected)
-export PICO_SDK_PATH="C:\Program Files\Raspberry Pi\Pico SDK v1.5.1"  # Windows
+export PICO_SDK_PATH="C:\Program Files\Raspberry Pi\Pico SDK v1.5.1\pico-sdk"  # Windows
 export PICO_SDK_PATH="/opt/pico-sdk"                                   # Linux
 
 # Configure and build
@@ -43,8 +43,8 @@ cmake --build . --parallel
 The CMake configuration automatically detects Pico SDK installations in common locations:
 
 **Windows:**
-- `C:\Program Files\Raspberry Pi\Pico SDK v1.5.1` (Official installer)
-- `C:\Program Files\Raspberry Pi\Pico SDK v1.5.0`
+- `C:\Program Files\Raspberry Pi\Pico SDK v1.5.1\pico-sdk` (Official installer)
+- `C:\Program Files\Raspberry Pi\Pico SDK v1.5.0\pico-sdk`
 - `C:\pico\pico-sdk`
 - Environment variable `PICO_SDK_PATH`
 
@@ -114,7 +114,7 @@ cmake --build . --target validate
 
 ### SDK Not Found
 ```
-Error: Directory 'C:\Program Files\Raspberry Pi\Pico SDK v1.5.1' not found
+Error: Directory 'C:\Program Files\Raspberry Pi\Pico SDK v1.5.1\pico-sdk' not found
 ```
 
 **Solutions:**
